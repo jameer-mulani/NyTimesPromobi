@@ -34,5 +34,7 @@ ext{
     butterKnife = "8.8.1"
     androidSupport = "26.1.0"
     gsonVersion = "2.8.5"
+    rxJava2 = "2.2.0"
+    rxAndroid2 = "2.0.2"
 
 }
