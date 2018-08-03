@@ -2,7 +2,7 @@ package com.assigment.nytimespromobi.network.model;
 
 import com.google.gson.annotations.SerializedName;
 
-class StoryMultimedia {
+public class StoryMultimedia {
 
     @SerializedName("url")
     private String url;
@@ -11,13 +11,24 @@ class StoryMultimedia {
     private String format;
 
     @SerializedName("height")
-    private String height;
+    private int height;
 
     @SerializedName("width")
-    private String width;
+    private int width;
 
     @SerializedName("copyright")
     private String copyright;
+
+    @SerializedName("type")
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getUrl() {
         return url;
@@ -35,19 +46,19 @@ class StoryMultimedia {
         this.format = format;
     }
 
-    public String getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public String getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public void setWidth(String width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 
