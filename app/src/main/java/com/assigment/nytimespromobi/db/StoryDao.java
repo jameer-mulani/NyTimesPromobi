@@ -18,6 +18,9 @@ public interface StoryDao {
     void insertStories(StoryEntity... stories);
 
     @Insert
+    long insertStory(StoryEntity entity);
+
+    @Insert
     void insertStoryMultimedia(StoryMultimediaEntity... storyMultimedia);
 
     @Delete
@@ -27,5 +30,8 @@ public interface StoryDao {
     LiveData<List<StoryEntity>> getAllStories();
 
     @Query("SELECT * FROM story_multimedia_table where story_id = :storyId")
-    LiveData<List<StoryMultimediaEntity>> getStoryMultimedia(int storyId);
+    LiveData<List<StoryMultimediaEntity>> getStoryMultimedia(long storyId);
+
+    @Query("DELETE FROM story_table")
+    void clearAllStories();
 }
