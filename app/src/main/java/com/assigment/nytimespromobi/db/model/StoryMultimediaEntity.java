@@ -31,13 +31,13 @@ public class StoryMultimediaEntity {
     String mCopyright;
 
     @ColumnInfo(name = "story_id")
-    String mStoryId;
+    long mStoryId;
 
-    public String getStoryId() {
+    public long getStoryId() {
         return mStoryId;
     }
 
-    public void setStoryId(String mStoryId) {
+    public void setStoryId(long mStoryId) {
         this.mStoryId = mStoryId;
     }
 
