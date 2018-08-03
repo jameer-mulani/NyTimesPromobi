@@ -18,7 +18,7 @@ public class StoryEntity {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "_id")
-    int mId;
+    long mId;
 
 
     @ColumnInfo(name = "section")
@@ -52,11 +52,11 @@ public class StoryEntity {
     List<StoryMultimediaEntity> mStoryMultimediaEntities;
 
     @NonNull
-    public int getId() {
+    public long getId() {
         return mId;
     }
 
-    public void setId(@NonNull int mId) {
+    public void setId(@NonNull long mId) {
         this.mId = mId;
     }
 
