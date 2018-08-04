@@ -32,9 +32,10 @@ ext{
     okHttp = "3.11.0"
     retrofit2Version = "2.4.0"
     butterKnife = "8.8.1"
-    androidSupport = "26.1.0"
+    androidSupport = "27.1.1"
     gsonVersion = "2.8.5"
     rxJava2 = "2.2.0"
     rxAndroid2 = "2.0.2"
+    glide = "4.7.1"
 
 }
