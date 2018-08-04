@@ -36,6 +36,7 @@ public class EntityBinder {
         entity.setHeight(storyMultimedia.getHeight());
         entity.setWidth(storyMultimedia.getWidth());
         entity.setType(storyMultimedia.getType());
+        entity.setUrl(storyMultimedia.getUrl());
         return entity;
     }
 
