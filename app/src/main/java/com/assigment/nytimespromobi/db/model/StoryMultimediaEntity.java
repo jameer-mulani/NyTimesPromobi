@@ -33,6 +33,17 @@ public class StoryMultimediaEntity {
     @ColumnInfo(name = "story_id")
     long mStoryId;
 
+    @ColumnInfo(name = "url")
+    String mUrl;
+
+    public String getUrl() {
+        return mUrl;
+    }
+
+    public void setUrl(String mUrl) {
+        this.mUrl = mUrl;
+    }
+
     public long getStoryId() {
         return mStoryId;
     }
