@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">NyTimesPromobi</string>
+    <string name="app_name">NY Times Top Stories</string>
+    <string name="no_stories_to_show_error_lbl">Oops, there are no stories to show! Please check your Internet connection or try some later time</string>
 </resources>
