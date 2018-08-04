@@ -1,6 +1,8 @@
 package com.assigment.nytimespromobi.view;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 
 import com.assigment.nytimespromobi.R;
 import com.assigment.nytimespromobi.db.model.StoryEntity;
+import com.assigment.nytimespromobi.db.model.StoryMultimediaEntity;
+import com.bumptech.glide.Glide;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,9 +30,11 @@ public class StoryListAdapter extends RecyclerView.Adapter<StoryListAdapter.Stor
     private static final String TAG = "StoryListAdapter";
     private LayoutInflater mInflater;
     private List<StoryEntity> allStories;
+    private RecyclerView mRecyclerView;
 
-    public StoryListAdapter(Context context) {
+    public StoryListAdapter(Context context, RecyclerView recyclerView) {
         mInflater = LayoutInflater.from(context);
+        mRecyclerView = recyclerView;
     }
 
     public void setAllStories(List<StoryEntity> allStories) {
@@ -44,15 +50,41 @@ public class StoryListAdapter extends RecyclerView.Adapter<StoryListAdapter.Stor
     }
 
     @Override
-    public void onBindViewHolder(StoryViewHolder holder, int position) {
+    public void onBindViewHolder(final StoryViewHolder holder, int position) {
 
 
-        StoryEntity story = allStories.get(position);
+        final StoryEntity story = allStories.get(position);
         holder.sectionTextview.setText(story.getSection());
         holder.storyTitleTextview.setText(story.getTitle());
         holder.publishedDateTextView.setText(formatDate(story.getPublishedDate()));
         holder.storyByLineTextview.setText(story.getByLine());
         holder.storyAbstract.setText(story.getStoryAbstract());
+
+
+        List<StoryMultimediaEntity> multimediaEntities = story.getStoryMultimediaEntities();
+        if (multimediaEntities != null && !multimediaEntities.isEmpty()) {
+
+            String url = multimediaEntities.get(0).getUrl();
+            for (StoryMultimediaEntity storyMultimediaEntity : multimediaEntities) {
+                if (storyMultimediaEntity.getFormat().equalsIgnoreCase("mediumThreeByTwo210")) {
+                    url = storyMultimediaEntity.getUrl();
+                    break;
+                }
+            }
+            Glide.with(holder.storyThumbnail.getContext())
+                    .load(url)
+                    .into(holder.storyThumbnail);
+        }
+
+        holder.topStoryCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), FullNewsActivity.class);
+                intent.putExtra(FullNewsActivity.KEY_ARTICAL_URL, story.getUrl());
+                intent.putExtra(FullNewsActivity.KEY_ARTICAL_TITLE, story.getTitle());
+                view.getContext().startActivity(intent);
+            }
+        });
 
 
     }
@@ -79,6 +111,9 @@ public class StoryListAdapter extends RecyclerView.Adapter<StoryListAdapter.Stor
     }
 
     public static class StoryViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.top_story_card)
+        CardView topStoryCard;
 
         @BindView(R.id.section_textview)
         TextView sectionTextview;

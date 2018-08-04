@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.assigment.nytimespromobi.R;
 import com.assigment.nytimespromobi.db.model.StoryEntity;
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        mStoryListAdapter = new StoryListAdapter(this);
+        mStoryListAdapter = new StoryListAdapter(this, mStoryList);
 
         mStoryList.setLayoutManager(new LinearLayoutManager(this));
         mStoryList.setItemAnimator(new DefaultItemAnimator());
@@ -42,15 +41,11 @@ public class MainActivity extends AppCompatActivity {
         mStoryList.setAdapter(mStoryListAdapter);
 
         mStoryViewModel = ViewModelProviders.of(this).get(StoryViewModel.class);
-
-        mStoryViewModel.getAllStories()
-
-                .observe(this, new Observer<List<StoryEntity>>() {
+        mStoryViewModel.getAllStories().observe(this, new Observer<List<StoryEntity>>() {
                     @Override
                     public void onChanged(@Nullable List<StoryEntity> storyEntities) {
 
                         mStoryListAdapter.setAllStories(storyEntities);
-                        Log.d(TAG, "stories:" + storyEntities.toString());
 
                     }
                 });
