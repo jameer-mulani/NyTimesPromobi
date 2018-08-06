@@ -20,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 
 import butterknife.BindView;
@@ -91,7 +92,7 @@ public class StoryListAdapter extends RecyclerView.Adapter<StoryListAdapter.Stor
 
     private String formatDate(String rawDate) {
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault());
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
         Date date = null;
         try {
